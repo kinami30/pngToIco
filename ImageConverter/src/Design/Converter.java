@@ -48,7 +48,7 @@ public class Converter extends javax.swing.JFrame {
     public Converter() {
         initComponents();
         init();
-        
+
     }
 
     /**
@@ -124,7 +124,7 @@ public class Converter extends javax.swing.JFrame {
                         .addComponent(textN)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(textCTP)))
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,7 +224,7 @@ public class Converter extends javax.swing.JFrame {
         displayWindow();
         acceptFiles();
         setLocationCenterFrame(this);
-       // dialogBox.dispose();
+        // dialogBox.dispose();
         transparentBackground(this);
         transparentBackground(jPanel1);
     }
@@ -292,16 +292,14 @@ public class Converter extends javax.swing.JFrame {
                     String extension = "ico";
                     String icoImagePathNoName;
                     for (File file : files) {
-                        icoImagePath = file.getPath().substring(0, file.getPath().length() - 3);
-                        icoImagePath += extension;
+                        icoImagePath = file.getPath().substring(0, file.getPath().length() - 3) + extension;
                         icoFile = new File(icoImagePath);
                         pngToIco(file, icoFile);
                         dialogBox.setVisible(true);
                         dialogBox.setLocation(getLocation());
-                        icoImagePathNoName = icoFile.getPath().substring(0, (icoImagePath.length() - Integer.valueOf(icoFile.getName().length())));
+                        icoImagePathNoName = icoFile.getAbsoluteFile().getParent();
                         imagePath.setText(icoImagePathNoName);
                     }
-
                 } catch (UnsupportedFlavorException | IOException ex) {
                     //do nothing
                 }
